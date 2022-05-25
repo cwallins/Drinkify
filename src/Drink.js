@@ -1,8 +1,10 @@
 import React from 'react'
 
-export default function Drink() {
-    
+export default function Drink(props) {
+
     return (
-        <div>drink</div>
+        <div className='list-group-item'>
+            {props.item.name}
+        </div>
     )
 }
