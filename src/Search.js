@@ -3,7 +3,7 @@ import React from 'react'
 export default function Search() {
     return (
 
-    <div className="container">
+    <div>
         <div className="card">
             <div className="search">
                 <input type="text" placeholder="Have a drink..." class="search-field" />
