@@ -39,7 +39,7 @@ export default function StoredDrinks() {
   return storage.storageBool === undefined ? (
     <div>
       No drinks
-      <button className="btn btn-primary" onClick={storeDrink}>spara en drink</button>
+      <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
     </div>
   ) : (
     <div>
