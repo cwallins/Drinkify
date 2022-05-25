@@ -8,6 +8,7 @@ export default function Nav() {
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                     <svg class="bi me-2" width="40" height="32"></svg>
                     <b><span id="logo" class="fs-4">Drinkify</span></b>
+                    <span id="drink" class="material-symbols-outlined">local_bar</span>
                     <br></br>
                 </a>
                 <ul class="nav nav-pills">
