@@ -2,12 +2,13 @@
   color: #006994;
 }
 
-#snapper {
+#drink {
   color: #006994;
 }
 
 .card {
-  background: #5ca7c6 ;
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
   padding: 2em;
   border-radius: 30px;
   width: 100%;
