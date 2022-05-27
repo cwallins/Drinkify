@@ -57,7 +57,7 @@ export default function StoredDrinks() {
     setStorage(JSON.stringify(newDrinksList));
   }
 
-  return storage.storageBool === undefined || storage.storageBool.length < 1 ? (
+  return storage.storageBool === undefined || JSON.parse(storage.storageBool).length < 1 ? (
     <div>
       No saved drinks
       <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
