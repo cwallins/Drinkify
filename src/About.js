@@ -4,10 +4,14 @@ export default function About() {
   return (
     <div>
         <br></br>
-        Välkommen till Drinkify - Din drinkdatabas på webben!
-        <br></br>
-        Detta skolprojekt syftar till att använda API'er och ramverk för att skapa en dynamisk webbapplikation. 
-
+        <div className="about-container">
+            <div className="search">
+                <div>
+                    Welcome to Drinkify - Your cocktail database online!<br></br>
+                    This page 
+                </div>
+            </div>
+        </div>
     </div>
   )
 }
