@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Drink from './Drink';
 
 // Results tar emot userChoice: str, userInput: str
 export default function Results(props) {
     let userInput = props.item;
+    const [resp, setResp] = useState({
+        resp: []
+    });
+
     // URL:er för olika resurser
     const searchURL = 'https://thecocktaildb.com/api/json/v1/1/search.php?s=';
     const filterURL = 'https://thecocktaildb.com/api/json/v1/1/filter.php?i=';
@@ -60,9 +64,10 @@ export default function Results(props) {
             drinkList.map((drink) => {
                 drinks.push(drink);
             });
+            setResp(resp.resp = drinks);
         }
         test();
-        console.log(drinks);
+        
     } else if (searchChoic === 'byIngredient') {
         // Sök efter drinkar baserat på ingrediens
     } else if (searchChoic === 'byId') {
@@ -76,7 +81,8 @@ export default function Results(props) {
     return (
         <div>
             <ul>
-                {drinks.map((drink, i) => <Drink key={i} item={drink} />)}
+                Hej
+                {resp.resp.map((drink, i) => <Drink key={i} item={drink} />)}
             </ul>
         </div>
     );

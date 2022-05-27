@@ -4,6 +4,7 @@ import Search from './Search'
 import StoredDrinks from './StoredDrinks';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
 import About from './About'
+import Results from './Results';
 
 function App() {
   return (
@@ -12,7 +13,10 @@ function App() {
       <div className="App">
         
         <Nav />
-        <Search />
+        <Search>
+          <Results />
+        </Search>
+          
 
         <Switch>
           <Route exact path="/about">
