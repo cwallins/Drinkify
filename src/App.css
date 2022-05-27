@@ -1,6 +1,7 @@
 /* Genererar random bakgrund med tema från Unsplash */ 
 body {
-  background-image: url('https://source.unsplash.com/1600x900/?drink');
+  /*background-image: url('https://source.unsplash.com/1600x900/?drink');*/
+  background: beige;
 }
 
 #logo, #links {
@@ -64,4 +65,13 @@ input.search-field {
   font-family: inherit;
   font-size: 105%;
   width: calc(100% - 100px);
+}
+
+@media screen and (max-width: 770px) {
+
+  .nav {
+    flex-direction: column;
+    width: 100%;     
+  }
+
 }
