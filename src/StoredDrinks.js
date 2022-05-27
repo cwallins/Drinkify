@@ -8,6 +8,11 @@ export default function StoredDrinks() {
     storageBool: localStorage.drinks
   })
 
+  /*
+    OBS - allt från rad 16 till 49 ska tas bort
+  */
+
+
   function storeDrink() {
 
     //min drink
@@ -52,7 +57,7 @@ export default function StoredDrinks() {
     setStorage(JSON.stringify(newDrinksList));
   }
 
-  return storage.storageBool === undefined ? (
+  return storage.storageBool === undefined || storage.storageBool.length < 1 ? (
     <div>
       No saved drinks
       <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
@@ -61,7 +66,7 @@ export default function StoredDrinks() {
     <div>
       My drinks:
       <ul className='list-group'>
-        {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key} inStorage="yes" removeDrink={removeDrink}/>)}
+        {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
       </ul>
     </div>
   )
