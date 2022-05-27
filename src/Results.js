@@ -1,5 +1,5 @@
 // import React from 'react';
-// import Drink from './Drinks';
+// import Drink from './Drink';
 
 // Results tar emot userChoice: str, userInput: str
 export default function Results(userChoice, userInput) {
@@ -35,7 +35,7 @@ export default function Results(userChoice, userInput) {
         try {
             let response = await fetch(`${url}${input}`, get);
             let data = await response.json();
-
+            console.log(data);
             return data;
         } catch (error) {
             console.log(error);
