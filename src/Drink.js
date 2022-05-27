@@ -32,5 +32,4 @@ export default function Drink(props) {
             <button className="btn btn-sm btn-danger float-end">add to storage</button> 
         </li>
     )
-    
 }
