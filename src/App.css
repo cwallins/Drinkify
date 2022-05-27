@@ -20,6 +20,14 @@ body {
   backdrop-filter: blur(4px);
 }
 
+.about-container {
+  background:#ffffff80;
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  backdrop-filter: blur(4px);
+}
+
 .search {
   display: flex;
   align-items: center;

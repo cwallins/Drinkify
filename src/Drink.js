@@ -3,8 +3,12 @@ import React from 'react'
 export default function Drink(props) {
 
     return (
-        <div className='list-group-item'>
+
+ 
+        <div className='about-container'>
             {props.item.name}
         </div>
+
+
     )
 }
