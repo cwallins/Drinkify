@@ -13,6 +13,7 @@ export default function Nav() {
                     <br></br>
                 </Link>
                 <ul class="nav nav-pills">
+                    <b><li class="nav-item"><Link to="/mydrinks" id="links" class="nav-link">My Drinks</Link></li></b>
                     <b><li class="nav-item"><Link to="/about" id="links" class="nav-link">About Drinkify</Link></li></b>
                 </ul>
             </header>
