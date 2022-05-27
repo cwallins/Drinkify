@@ -44,9 +44,9 @@ export default function StoredDrinks() {
   ) : (
     <div>
       My drinks:
-      <div className='list-group'>
+      <ul className='list-group'>
         {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key}/>)}
-      </div>
+      </ul>
     </div>
   )
 }
