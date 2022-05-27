@@ -1,14 +1,14 @@
-// import React from 'react';
-// import Drink from './Drink';
+import React from 'react';
+import Drink from './Drink';
 
 // Results tar emot userChoice: str, userInput: str
-export default function Results(userChoice, userInput) {
+export default function Results(props) {
+    let userInput = props.item;
     // URL:er för olika resurser
     const searchURL = 'https://thecocktaildb.com/api/json/v1/1/search.php?s=';
     const filterURL = 'https://thecocktaildb.com/api/json/v1/1/filter.php?i=';
     const lookupURL = 'https://thecocktaildb.com/api/json/v1/1/lookup.php?i=';
     const randomURL = 'https://thecocktaildb.com/api/json/v1/1/random.php';
-    const get = { method: 'GET' }; // används evenetuellt enbart en gång... 
     const searchSt = 'mar';
     const searchChoic = 'byName';
     const id = '11007';
@@ -31,47 +31,44 @@ export default function Results(userChoice, userInput) {
             }
         3. nyLista.map med komonenten drink (props; )
     */
-    async function search(url, input) {
-        try {
-            let response = await fetch(`${url}${input}`, get);
-            let data = await response.json();
-            console.log(data);
-            return data;
-        } catch (error) {
-            console.log(error);
-        }
+    async function getData(raq, p) {
+        // raq: resource and query, p: parameter
+        let res = await fetch(`https://thecocktaildb.com/api/json/v1/1/${raq}${p}`, { method: 'GET' });
+        return await res.json();
     }
 
-    /* 
-    async function renderDrinks(url, input) {
-        let drinks = await search(url, input);
-        let html = '';
-        console.log(drinks);
+    async function getDrinksByName(userInput) {
+        let data = await getData('search.php?s=', userInput);
 
-        drinks.map(drink => {
-            let htmlSeg = 
-                `
-                <div className='drink'>
-                    <h3>${drink.strDrink}</h3>
-                    <img src='${drink.strDrinkThumb}'>
-                </div>
-                `
-        })
+        let drink = data.drinks.map((drink) => {
+            return {
+                id: `${drink.idDrink}`,
+                name: `${drink.strDrink}`,
+                img: `${drink.strDrinkThumb}`,
+                instructions: `${drink.strInstructions}`
+            }
+        });
+        return drink;
     }
-    */
+
+    const drinks = [];
 
     if (searchChoic === 'byName') {
         // Sök efter drinkar baserat på namn
-        search(searchURL, searchSt);
+        async function test() {
+            let drinkList = await getDrinksByName('Margarita')
+            drinkList.map((drink) => {
+                drinks.push(drink);
+            });
+        }
+        test();
+        console.log(drinks);
     } else if (searchChoic === 'byIngredient') {
         // Sök efter drinkar baserat på ingrediens
-        search(filterURL, searchSt);
     } else if (searchChoic === 'byId') {
         // Sök efter specifik drink baserat på id
-        search(lookupURL, id);
     } else if (searchChoic === 'getRandom') {
         // Sök efter en drink baserat på slumpen
-        search(randomURL, rand);
     } else {
         console.log('Search option was not entered');
     }
@@ -79,6 +76,7 @@ export default function Results(userChoice, userInput) {
     return (
         <div>
             <ul>
+                {drinks.map((drink, i) => <Drink key={i} item={drink} />)}
             </ul>
         </div>
     );
