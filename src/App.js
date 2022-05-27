@@ -1,16 +1,32 @@
 import './App.css';
 import Nav from './Nav'
 import Search from './Search'
+import StoredDrinks from './StoredDrinks';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
+import About from './About'
 
 function App() {
   return (
 
-    <div className="App">
-      
-      <Nav />
-      <Search />
+    <Router>
+      <div className="App">
+        
+        <Nav />
+        <Search />
 
-    </div>
+        <Switch>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          
+          <Route exact path="/mydrinks">
+            <StoredDrinks />
+          </Route>
+        </Switch>
+
+
+      </div>
+    </Router>
   );
 }
 
