@@ -13,10 +13,7 @@ function App() {
       <div className="App">
         
         <Nav />
-        <Search>
-          <Results />
-        </Search>
-          
+        <Search />
 
         <Switch>
           <Route exact path="/about">
