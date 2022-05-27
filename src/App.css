@@ -19,6 +19,13 @@ body {
   width: 100%;
   backdrop-filter: blur(4px);
 }
+.about-container {
+  background: beige;
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  backdrop-filter: blur(4px);
+}
 
 .search {
   display: flex;
@@ -27,7 +34,7 @@ body {
 }
 
 /* Styling till sökknappen */
-button {
+#button {
   margin: 0.5em;
   border-radius: 50%;
   border: none;
