@@ -2,34 +2,28 @@ import React from 'react'
 
 export default function Drink(props) {
     
-    function inStorage(id) {
+    function addOrDelBtn(id) {
         /*
-        Kontrollerar om drinken i fråga finns i local storage
+        Kontrollerar om drinken i fråga finns i local storage.
+        Om drinken finns i LS returneras ett button-element med onclick som tar bort den från LS,
+        annars returneras ett button-element med onclick som lägger till den i LS.
         */
 
         let storage = JSON.parse(localStorage.drinks);
         
         for (var i=0; i<storage.length; i++){
             if(storage[i].id === id){
-                return true
+                return <button className="btn btn-sm btn-danger float-end" onClick={() => {props.removeDrink(props.item.id)}}>X</button>
             } else{
-                return false
+                return <button className="btn btn-sm btn-danger float-end">add to storage</button>
             }
         }
     }
 
-    //Om objektet finns i local storage så kommer knappens onClick ta bort objektet
-    //Om objektet inte finns i local storage så kommer knappen onClick lägga till objektet
-    return inStorage(props.item.id) === true ?(
+    return (
         <li className='list-group-item'>
             {props.item.name}
-            <button className="btn btn-sm btn-danger float-end" onClick={() => {props.removeDrink(props.item.id)}}>X</button>
-        </li>
-    ):
-    (
-        <li className='list-group-item'>
-            {props.item.name}
-            <button className="btn btn-sm btn-danger float-end">add to storage</button> 
+            {addOrDelBtn(props.item.id)}
         </li>
     )
 }
