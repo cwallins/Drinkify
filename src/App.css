@@ -65,6 +65,14 @@ input.search-field {
   width: calc(100% - 100px);
 }
 
+#drink-container {
+  margin-top: 1rem;
+}
+
+.list-group {
+  gap: 1rem;
+}
+
 .drink-list-item {
   height: 200px;
   display: flex;
@@ -93,3 +101,4 @@ input.search-field {
 .drink-list-item > .drink-info > div{
   margin: auto;
 }
+

@@ -27,7 +27,7 @@ export default function Drink(props) {
             
             <div className='drink-info'>
                 <span>{props.item.name}</span>
-                
+
                 <div>
                     Ingredients: 
                     {props.item.ingredients.map((ingredient, i) => <span key={i}>{ (i ? ', ' : ' ') + ingredient}</span>)}

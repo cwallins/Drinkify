@@ -9,7 +9,7 @@ export default function StoredDrinks() {
   })
 
   /*
-    OBS - allt från rad 16 till 49 ska tas bort
+    OBS - allt från rad 16 till 69 ska tas bort
   */
 
 
@@ -35,7 +35,7 @@ export default function StoredDrinks() {
     let anotherD = {
       id: 2,
       name: 'martini',
-      ingredients: ['rom', 'sprite']
+      ingredients: ['rom', 'sprite', 'sausage']
     };
 
     drinks.push(anotherD);
@@ -73,7 +73,7 @@ export default function StoredDrinks() {
       <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
     </div>
   ) : (
-    <div>
+    <div id="drink-container">
       <ul className='list-group'>
         {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
       </ul>
