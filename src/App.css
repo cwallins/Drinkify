@@ -64,3 +64,18 @@ input.search-field {
   font-size: 105%;
   width: calc(100% - 100px);
 }
+
+.drink-list-item {
+  height: 200px;
+  display: flex;
+}
+
+.drink-list-item > img {
+  max-width: 30%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.drink-list-item > button {
+  margin-left: auto;
+}

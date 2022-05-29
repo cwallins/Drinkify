@@ -32,7 +32,17 @@ export default function StoredDrinks() {
     //ändrar datan i localstorage till den nya listan
     localStorage.setItem("drinks", jsonNewDrinks);
 
-    setStorage({storageBool: jsonNewDrinks});
+    let anotherD = {
+      id: 2,
+      name: 'martini',
+      ingredients: ['rom', 'sprite']
+    };
+
+    drinks.push(anotherD);
+
+    let anotherJson = JSON.stringify(drinks);
+
+    setStorage({storageBool: anotherJson});
   }
   
   function loadDrinks() {
@@ -64,7 +74,6 @@ export default function StoredDrinks() {
     </div>
   ) : (
     <div>
-      My drinks:
       <ul className='list-group'>
         {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
       </ul>
