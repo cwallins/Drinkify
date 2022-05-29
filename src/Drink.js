@@ -26,9 +26,12 @@ export default function Drink(props) {
             <img src="https://via.placeholder.com/300" alt="placeholder"className='rounded'></img>
             
             <div className='drink-info'>
-                <span className='d-block'>{props.item.name}</span>
-                Ingredients: 
-                {props.item.ingredients.map((ingredient, i) => <span key={i}>{ (i ? ', ' : ' ') + ingredient}</span>)}
+                <span>{props.item.name}</span>
+                
+                <div>
+                    Ingredients: 
+                    {props.item.ingredients.map((ingredient, i) => <span key={i}>{ (i ? ', ' : ' ') + ingredient}</span>)}
+                </div>
             </div>
      
             {addOrDelBtn(props.item.id)}

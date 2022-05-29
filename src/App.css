@@ -68,6 +68,7 @@ input.search-field {
 .drink-list-item {
   height: 200px;
   display: flex;
+  gap: 5rem;
 }
 
 .drink-list-item > img {
@@ -78,4 +79,17 @@ input.search-field {
 
 .drink-list-item > button {
   margin-left: auto;
+}
+
+.drink-list-item > .drink-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.drink-list-item > .drink-info > span{
+  align-self: center;
+}
+
+.drink-list-item > .drink-info > div{
+  margin: auto;
 }
