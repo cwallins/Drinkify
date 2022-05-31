@@ -106,7 +106,7 @@ input.search-field {
 }
 
 .drink-list-item {
-  min-height: 200px;
+  height: 200px;
   display: flex;
   gap: 5rem;
   background:#ffffff80;
@@ -142,11 +142,6 @@ input.search-field {
 
 @media screen and (max-width: 770px) {
 
-  * {
-    margin: 0px;
-    padding: 0px; 
-  }
-
   .nav {
     flex-direction: column;
     width: 100%;     
@@ -154,6 +149,10 @@ input.search-field {
   
   .drink-list-item {
     height: auto;
+    overflow-y: scroll;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 
   .drink-list-item > img {
