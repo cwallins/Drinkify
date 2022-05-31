@@ -1,6 +1,4 @@
-import { clear } from '@testing-library/user-event/dist/clear';
 import React, { useRef, useState } from 'react'
-// import Drinks from './Drinks';
 import Drink from './Drink';
 import Nav from './Nav';
 
@@ -26,15 +24,27 @@ export default function Search() {
     async function getDrinksByName(userInput) {
         let data = await getData('search.php?s=', userInput);
 
+        let ingredients = [];
+
         let drink = data.drinks.map((drink) => {
+            ingredients = [];
+
+            for (let i = 1; i < 16; i++) {
+                if (drink[`strIngredient${i}`] !== "" && drink[`strIngredient${i}`] !== null) {
+                    ingredients.push(drink[`strIngredient${i}`]);
+                }
+            }
+
             return {
                 id: drink.idDrink,
                 name: drink.strDrink,
                 img: drink.strDrinkThumb,
-                instructions: drink.strInstructions
+                instructions: drink.strInstructions,
+                ingredients: ingredients
             }
         });
         setDrinks(drink);
+
     };
 
     function handleClick(e) {
