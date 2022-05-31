@@ -1,5 +1,4 @@
 import './App.css';
-import Nav from './Nav'
 import Search from './Search'
 import StoredDrinks from './StoredDrinks';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
@@ -10,8 +9,7 @@ function App() {
 
     <Router>
       <div className="App">
-        
-        <Nav />
+
         <Search />
 
         <Switch>

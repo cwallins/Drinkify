@@ -1,6 +1,8 @@
+import { clear } from '@testing-library/user-event/dist/clear';
 import React, { useRef, useState } from 'react'
 // import Drinks from './Drinks';
 import Drink from './Drink';
+import Nav from './Nav';
 
 export default function Search() {
 
@@ -9,12 +11,16 @@ export default function Search() {
     // Holds the current search results
     const [drinks, setDrinks] = useState([]);
 
+    const clearState = () => {
+        setDrinks([]);
+    };
+
     // raq: resource and query, p: parameter
     async function getData(raq, p) {
         let res = await fetch(`https://thecocktaildb.com/api/json/v1/1/${raq}${p}`, { method: 'GET' });
 
         return await res.json();
-    }
+    };
 
     async function getDrinksByName(userInput) {
         let data = await getData('search.php?s=', userInput);
@@ -28,9 +34,10 @@ export default function Search() {
             }
         });
         setDrinks(drink);
-    }
+    };
 
-    function handleClick() {
+    function handleClick(e) {
+        e.preventDefault();
         const userInput = inputValue.current.value;
 
         if (userInput !== "") {
@@ -38,10 +45,16 @@ export default function Search() {
         } else {
             alert('You have to enter atleast one character in the search field');
         }
+        inputValue.current.value = '';
+    }
+
+    function onChange() {
+            clearState();
     }
 
     return (
         <div>
+            <Nav onChange={onChange} />
             <div className="search-container">
                 <div className="search">
                     <input ref={inputValue} type="text" placeholder="Have a drink..." className="search-field" />
