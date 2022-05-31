@@ -130,14 +130,11 @@ input.search-field {
 .drink-list-item > .drink-info {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .drink-list-item > .drink-info > span{
   align-self: center;
-}
-
-.drink-list-item > .drink-info > div{
-  margin: auto;
 }
 
 @media screen and (max-width: 770px) {

@@ -29,7 +29,6 @@ export default function Drink(props) {
                 return <button className="btn btn-sm btn-success align-self-start" onClick={() => { props.addDrink(props.item) }}>add</button>
             }
         }
-
     }
 
     return (
@@ -38,9 +37,13 @@ export default function Drink(props) {
 
             <img src={props.item.img} alt={'Picture of ' + props.item.name} className='rounded'></img>
             <div className='drink-info'>
-                <span>{props.item.name}</span>
+                <span><b><p>{props.item.name}</p></b></span>
                 <div>
-                    <b><p>Instructions:</p></b>
+                    <b>Ingredients: </b>
+                    {props.item.ingredients.map((ingredient, i) => <span key={i}>{(i? ", ": "") + ingredient}</span>)}
+                </div>
+                <div>    
+                    <b><p className='mb-0'>Instructions:</p></b>
                     {props.item.instructions}
                 </div>
             </div>
