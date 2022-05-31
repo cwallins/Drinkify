@@ -23,14 +23,14 @@ export default function Drink(props) {
     return (
         <li className='list-group-item drink-list-item'>
          
-            <img src="https://via.placeholder.com/300" alt="placeholder"className='rounded'></img>
+            <img src={props.item.img} alt={'Picture of ' + props.item.name} className='rounded'></img>
             
             <div className='drink-info'>
                 <span>{props.item.name}</span>
 
                 <div>
-                    Ingredients: 
-                    {props.item.ingredients.map((ingredient, i) => <span key={i}>{ (i ? ', ' : ' ') + ingredient}</span>)}
+                    Instructions: 
+                    {props.item.instructions}
                 </div>
             </div>
      

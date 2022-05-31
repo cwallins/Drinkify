@@ -21,10 +21,10 @@ export default function Search() {
 
         let drink = data.drinks.map((drink) => {
             return {
-                id: `${drink.idDrink}`,
-                name: `${drink.strDrink}`,
-                img: `${drink.strDrinkThumb}`,
-                instructions: `${drink.strInstructions}`
+                id: drink.idDrink,
+                name: drink.strDrink,
+                img: drink.strDrinkThumb,
+                instructions: drink.strInstructions
             }
         });
         setDrinks(drink);
@@ -49,9 +49,11 @@ export default function Search() {
                 </div>
             </div>
             <div className="drink-container">
-                {drinks.map((drink) => {
-                    return <Drink key={drink.id} item={drink} />;
-                })}
+                <ul className="list-group">
+                    {drinks.map((drink) => {
+                        return <Drink key={drink.id} item={drink} />;
+                    })}
+                </ul>
             </div>
         </div>
     );

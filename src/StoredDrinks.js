@@ -73,7 +73,7 @@ export default function StoredDrinks() {
       <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
     </div>
   ) : (
-    <div id="drink-container">
+    <div className="drink-container">
       <ul className='list-group'>
         {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
       </ul>
