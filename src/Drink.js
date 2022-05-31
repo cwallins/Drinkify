@@ -29,7 +29,7 @@ export default function Drink(props) {
                 <span>{props.item.name}</span>
 
                 <div>
-                    Instructions: 
+                    <b><p>Instructions:</p></b>
                     {props.item.instructions}
                 </div>
             </div>
