@@ -4,46 +4,8 @@ import Drink from './Drink';
 
 export default function StoredDrinks() {
 
-  const [storage, setStorage] = useState({
-    storageBool: localStorage.drinks
-  })
+  const [storage, setStorage] = useState(localStorage.drinks)
 
-  /*
-    OBS - allt från rad 16 till 69 ska tas bort
-  */
-
-
-  function storeDrink() {
-
-    //min drink
-    let myDrink = {
-      id: 1,
-      name: 'Vodka Tonic',
-      ingredients: ['Vodka', 'Tonic']
-    };
-
-    let drinks = loadDrinks();
-
-    //pushar min drink till myDrinksList
-    drinks.push(myDrink);
-
-    let jsonNewDrinks = JSON.stringify(drinks);
-
-    //ändrar datan i localstorage till den nya listan
-    localStorage.setItem("drinks", jsonNewDrinks);
-
-    let anotherD = {
-      id: 2,
-      name: 'martini',
-      ingredients: ['rom', 'sprite', 'sausage']
-    };
-
-    drinks.push(anotherD);
-
-    let anotherJson = JSON.stringify(drinks);
-
-    setStorage({storageBool: anotherJson});
-  }
   
   function loadDrinks() {
     //hämtar drinkar från localstorage
@@ -60,22 +22,22 @@ export default function StoredDrinks() {
   function removeDrink(id) {
 
     let drinks = loadDrinks();
+  
     let newDrinksList = drinks.filter((drink) => drink.id !== id);
-
+    
     localStorage.setItem("drinks", JSON.stringify(newDrinksList));
-
     setStorage(JSON.stringify(newDrinksList));
+    
   }
-
-  return storage.storageBool === undefined || JSON.parse(storage.storageBool).length < 1 ? (
+ 
+  return storage === undefined || JSON.parse(storage).length < 1 ? (
     <div>
       No saved drinks
-      <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
     </div>
   ) : (
     <div className="drink-container">
       <ul className='list-group'>
-        {JSON.parse(storage.storageBool).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
+        {JSON.parse(storage).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
       </ul>
     </div>
   )

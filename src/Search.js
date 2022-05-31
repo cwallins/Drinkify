@@ -14,6 +14,7 @@ export default function Search() {
     const clearState = () => {
         setDrinks([]);
     };
+    const [change, setChange] = useState(true);
 
     // raq: resource and query, p: parameter
     async function getData(raq, p) {
@@ -52,6 +53,39 @@ export default function Search() {
             clearState();
     }
 
+    function loadDrinks() {
+        //hämtar drinkar från localstorage
+        let drinks = localStorage.drinks;
+
+        let newDrinksList;
+
+        //om 'drinks' är undefined sparas newDrinkslist som en tom lista, annars sparas localstorage i newDrinkslist
+        drinks === undefined ? newDrinksList = [] : newDrinksList = JSON.parse(drinks);
+
+        return newDrinksList;
+    }
+
+    function removeDrink(id) {
+
+        let storage = loadDrinks();
+        let newDrinkStorage = storage.filter((drink) => drink.id !== id);
+    
+        localStorage.setItem("drinks", JSON.stringify(newDrinkStorage));
+        
+        setChange(!change);
+      }
+
+    function addDrink(drink) {
+
+        let storage = loadDrinks();
+
+        storage.push(drink);
+
+        localStorage.setItem("drinks", JSON.stringify(storage));
+        
+        setChange(!change);
+    }
+
     return (
         <div>
             <Nav onChange={onChange} />
@@ -64,7 +98,7 @@ export default function Search() {
             <div className="drink-container">
                 <ul className="list-group">
                     {drinks.map((drink) => {
-                        return <Drink key={drink.id} item={drink} />;
+                        return <Drink key={drink.id} item={drink} addDrink={addDrink} removeDrink={removeDrink}/>;
                     })}
                 </ul>
             </div>
