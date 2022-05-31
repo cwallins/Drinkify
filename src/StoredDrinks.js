@@ -12,7 +12,7 @@ export default function StoredDrinks() {
     OBS - allt från rad 16 till 69 ska tas bort
   */
 
-
+  /*
   function storeDrink() {
 
     //min drink
@@ -45,6 +45,7 @@ export default function StoredDrinks() {
     setStorage({storageBool: anotherJson});
   }
   
+  */
   function loadDrinks() {
     //hämtar drinkar från localstorage
     let drinks = localStorage.drinks;
@@ -66,11 +67,10 @@ export default function StoredDrinks() {
 
     setStorage(JSON.stringify(newDrinksList));
   }
-
+ 
   return storage.storageBool === undefined || JSON.parse(storage.storageBool).length < 1 ? (
     <div>
       No saved drinks
-      <button className="btn btn-primary" type="button" onClick={storeDrink}>spara en drink</button>
     </div>
   ) : (
     <div className="drink-container">

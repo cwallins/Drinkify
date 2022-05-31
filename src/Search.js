@@ -40,6 +40,39 @@ export default function Search() {
         }
     }
 
+    function loadDrinks() {
+        //hämtar drinkar från localstorage
+        let drinks = localStorage.drinks;
+
+        let newDrinksList;
+
+        //om 'drinks' är undefined sparas newDrinkslist som en tom lista, annars sparas localstorage i newDrinkslist
+        drinks === undefined ? newDrinksList = [] : newDrinksList = JSON.parse(drinks);
+
+        return newDrinksList;
+    }
+
+    function removeDrink(id) {
+
+        let storage = loadDrinks();
+        let newDrinkStorage = storage.filter((drink) => drink.id !== id);
+    
+        localStorage.setItem("drinks", JSON.stringify(newDrinkStorage));
+    
+      }
+
+    function addDrink(drink) {
+
+        let storage = loadDrinks();
+
+        storage.push(drink);
+
+        //let jsonDrinks = JSON.stringify(newDrinkStorage);
+
+        localStorage.setItem("drinks", JSON.stringify(storage));
+
+    }
+
     return (
         <div>
             <div className="search-container">
@@ -51,7 +84,7 @@ export default function Search() {
             <div className="drink-container">
                 <ul className="list-group">
                     {drinks.map((drink) => {
-                        return <Drink key={drink.id} item={drink} />;
+                        return <Drink key={drink.id} item={drink} addDrink={addDrink} removeDrink={removeDrink}/>;
                     })}
                 </ul>
             </div>
