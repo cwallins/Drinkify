@@ -21,20 +21,23 @@ export default function Drink(props) {
     }
 
     return (
+
         <li className='list-group-item drink-list-item'>
          
             <img src={props.item.img} alt={'Picture of ' + props.item.name} className='rounded'></img>
-            
             <div className='drink-info'>
                 <span>{props.item.name}</span>
-
                 <div>
-                    Instructions: 
+                    <b><p>Instructions:</p></b>
                     {props.item.instructions}
                 </div>
             </div>
      
             {addOrDelBtn(props.item.id)}
+
         </li>
+
     )
+
+
 }

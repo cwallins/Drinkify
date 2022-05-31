@@ -2,6 +2,8 @@
 * {
   margin: 0px;
   padding: 0px; 
+  font-family: 'Exo 2', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -34,13 +36,6 @@ body {
 
 .about-container {
   background:#ffffff80;
-  padding: 2em;
-  border-radius: 30px;
-  width: 100%;
-  backdrop-filter: blur(4px);
-}
-.about-container {
-  background: beige;
   padding: 2em;
   border-radius: 30px;
   width: 100%;
@@ -87,6 +82,23 @@ input.search-field {
 
 .drink-container {
   margin-top: 1rem;
+  overflow-y: scroll;
+  max-height: 550px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-button {
+  height: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background:#ffffff80;
+  backdrop-filter: blur(4px);
+  outline: none;
+  border-radius: 10px;
 }
 
 .list-group {
@@ -97,12 +109,18 @@ input.search-field {
   height: 200px;
   display: flex;
   gap: 5rem;
+  background:#ffffff80;
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  /* Om beskrivningen är för lång, scrolla i list item */
+  overflow-y: scroll;
 }
 
 .drink-list-item > img {
   max-width: 30%;
   max-height: 100%;
   box-sizing: border-box;
+  border-radius: 20px;
 }
 
 .drink-list-item > button {
@@ -121,16 +139,28 @@ input.search-field {
 .drink-list-item > .drink-info > div{
   margin: auto;
 }
-/* Lägger Nav länkar under varandra vid mindre skärmar */ 
+
 @media screen and (max-width: 770px) {
+
+  * {
+    margin: 0px;
+    padding: 0px; 
+  }
 
   .nav {
     flex-direction: column;
     width: 100%;     
   }
+  
+  .drink-list-item {
+    height: auto;
+  }
+
+  .drink-list-item > img {
+    height: 200px;
+    max-width: 40%;
+  }
 
 }
 
-/* Denna bootstrap raden kan vi ha till att displaya bilderna */ 
-/* <div class="col-12 col-md-6 col-lg-3">  */ 
 
