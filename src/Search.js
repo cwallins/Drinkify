@@ -9,6 +9,8 @@ export default function Search() {
     // Holds the current search results
     const [drinks, setDrinks] = useState([]);
 
+    const [change, setChange] = useState(true);
+
     // raq: resource and query, p: parameter
     async function getData(raq, p) {
         let res = await fetch(`https://thecocktaildb.com/api/json/v1/1/${raq}${p}`, { method: 'GET' });
@@ -58,7 +60,8 @@ export default function Search() {
         let newDrinkStorage = storage.filter((drink) => drink.id !== id);
     
         localStorage.setItem("drinks", JSON.stringify(newDrinkStorage));
-    
+        
+        setChange(!change);
       }
 
     function addDrink(drink) {
@@ -67,10 +70,9 @@ export default function Search() {
 
         storage.push(drink);
 
-        //let jsonDrinks = JSON.stringify(newDrinkStorage);
-
         localStorage.setItem("drinks", JSON.stringify(storage));
-
+        
+        setChange(!change);
     }
 
     return (

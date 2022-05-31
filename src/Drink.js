@@ -15,13 +15,18 @@ export default function Drink(props) {
         if (newStorage.length === 0) {
             return <button className="btn btn-sm btn-success align-self-start" onClick={() => { props.addDrink(props.item) }}>add</button>
         } else {
-            for (var i = 0; i < newStorage.length; i++) {
-                console.log("loop");
+
+            let isInStorage = false;
+            for (let i = 0; i < newStorage.length; i++) {
                 if (newStorage[i].id === id) {
-                    return <button className="btn btn-sm btn-danger align-self-start" onClick={() => { props.removeDrink(props.item.id) }}>X</button>
-                } else {
-                    return <button className="btn btn-sm btn-success align-self-start" onClick={() => { props.addDrink(props.item) }}>add</button>
-                }
+                    isInStorage = true;
+                } 
+            }
+            
+            if (isInStorage === true) {
+                return <button className="btn btn-sm btn-danger align-self-start" onClick={() => { props.removeDrink(props.item.id) }}>X</button>
+            } else {
+                return <button className="btn btn-sm btn-success align-self-start" onClick={() => { props.addDrink(props.item) }}>add</button>
             }
         }
 
@@ -36,7 +41,6 @@ export default function Drink(props) {
                 <span>{props.item.name}</span>
 
                 <div>
-                    Instructions:
                     {props.item.instructions}
                 </div>
             </div>

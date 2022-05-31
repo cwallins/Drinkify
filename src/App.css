@@ -94,7 +94,7 @@ input.search-field {
 }
 
 .drink-list-item {
-  height: 200px;
+  min-height: 200px;
   display: flex;
   gap: 5rem;
 }
