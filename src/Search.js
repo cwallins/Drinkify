@@ -10,12 +10,12 @@ export default function Search() {
     const inputValue = useRef("");
     // Holds the current search results
     const [drinks, setDrinks] = useState([]);
-
-    const clearState = () => {
-        setDrinks([]);
-    };
     const [change, setChange] = useState(true);
 
+    const clearDrinksState = () => {
+        setDrinks([]);
+    };
+    
     // raq: resource and query, p: parameter
     async function getData(raq, p) {
         let res = await fetch(`https://thecocktaildb.com/api/json/v1/1/${raq}${p}`, { method: 'GET' });
@@ -50,7 +50,7 @@ export default function Search() {
     }
 
     function onChange() {
-            clearState();
+            clearDrinksState();
     }
 
     function loadDrinks() {
