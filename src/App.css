@@ -39,13 +39,6 @@ body {
   width: 100%;
   backdrop-filter: blur(4px);
 }
-.about-container {
-  background: beige;
-  padding: 2em;
-  border-radius: 30px;
-  width: 100%;
-  backdrop-filter: blur(4px);
-}
 
 .search {
   display: flex;
@@ -93,10 +86,13 @@ input.search-field {
   gap: 1rem;
 }
 
+
 .drink-list-item {
   height: 200px;
   display: flex;
   gap: 5rem;
+  background:#ffffff80;
+  backdrop-filter: blur(4px);
 }
 
 .drink-list-item > img {
@@ -121,6 +117,7 @@ input.search-field {
 .drink-list-item > .drink-info > div{
   margin: auto;
 }
+
 /* Lägger Nav länkar under varandra vid mindre skärmar */ 
 @media screen and (max-width: 770px) {
 
