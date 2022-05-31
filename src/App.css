@@ -90,6 +90,10 @@ input.search-field {
   width: 8px;
 }
 
+::-webkit-scrollbar-button {
+  height: 15px;
+}
+
 ::-webkit-scrollbar-thumb {
   background:#ffffff80;
   backdrop-filter: blur(4px);
@@ -136,16 +140,27 @@ input.search-field {
   margin: auto;
 }
 
-/* Lägger Nav länkar under varandra vid mindre skärmar */ 
 @media screen and (max-width: 770px) {
+
+  * {
+    margin: 0px;
+    padding: 0px; 
+  }
 
   .nav {
     flex-direction: column;
     width: 100%;     
   }
+  
+  .drink-list-item {
+    height: auto;
+  }
+
+  .drink-list-item > img {
+    height: 200px;
+    max-width: 40%;
+  }
 
 }
 
-/* Denna bootstrap raden kan vi ha till att displaya bilderna */ 
-/* <div class="col-12 col-md-6 col-lg-3">  */ 
 
