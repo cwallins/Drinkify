@@ -4,10 +4,11 @@ import Nav from './Nav';
 
 export default function Search() {
 
-    // Holds the value of inputField
+    // Sparar värdet av input-elementet
     const inputValue = useRef("");
-    // Holds the current search results
+    // Sparar api-resultatet
     const [drinks, setDrinks] = useState([]);
+ 
     const [change, setChange] = useState(true);
 
     const clearDrinksState = () => {
@@ -28,7 +29,7 @@ export default function Search() {
 
         let drink = data.drinks.map((drink) => {
             ingredients = [];
-
+            // loopar drink-objektet och lägger till värdet från ingrediensnycklarna som inte är null eller tom sträng i en lista
             for (let i = 1; i < 16; i++) {
                 if (drink[`strIngredient${i}`] !== "" && drink[`strIngredient${i}`] !== null) {
                     ingredients.push(drink[`strIngredient${i}`]);
