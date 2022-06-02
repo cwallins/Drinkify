@@ -1,6 +1,8 @@
 # Installationsinstruktioner
 
-Följande paket behövs för att köra applikationen:
+Följande paket och installationer behövs för att köra applikationen:
+
+### [node](https://nodejs.org/en/download/)
 
 ### `npm install react`
 
