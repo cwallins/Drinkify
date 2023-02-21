@@ -1,44 +1,40 @@
-import React, { useState } from 'react'
-import Drink from './Drink';
-
+import React, { useState } from "react";
+import Drink from "./Drink";
 
 export default function StoredDrinks() {
+	const [storage, setStorage] = useState(localStorage.drinks);
 
-  const [storage, setStorage] = useState(localStorage.drinks)
+	function loadDrinks() {
+		//hämtar drinkar från localstorage
+		let drinks = localStorage.drinks;
+		let newDrinkList;
 
-  
-  function loadDrinks() {
-    //hämtar drinkar från localstorage
-    let drinks = localStorage.drinks;
+		//om 'drinks' är undefined sparas newDrinkslist som en tom lista, annars sparas localstorage i newDrinkslist
+		drinks === undefined
+			? (newDrinkList = [])
+			: (newDrinkList = JSON.parse(drinks));
 
-    let newDrinksList;
+		return newDrinkList;
+	}
 
-    //om 'drinks' är undefined sparas newDrinkslist som en tom lista, annars sparas localstorage i newDrinkslist
-    drinks === undefined ? newDrinksList = [] : newDrinksList = JSON.parse(drinks);
+	function removeDrink(id) {
+		let drinks = loadDrinks();
+		let newDrinkList = drinks.filter((drink) => drink.id !== id);
 
-    return newDrinksList;
-  }
+		localStorage.setItem("drinks", JSON.stringify(newDrinkList));
 
-  function removeDrink(id) {
+		setStorage(JSON.stringify(newDrinkList));
+	}
 
-    let drinks = loadDrinks();
-  
-    let newDrinksList = drinks.filter((drink) => drink.id !== id);
-    
-    localStorage.setItem("drinks", JSON.stringify(newDrinksList));
-    setStorage(JSON.stringify(newDrinksList));
-    
-  }
- 
-  return storage === undefined || JSON.parse(storage).length < 1 ? (
-    <div>
-      No saved drinks
-    </div>
-  ) : (
-    <div className="drink-container">
-      <ul className='list-group'>
-        {JSON.parse(storage).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
-      </ul>
-    </div>
-  )
+	return storage === undefined || JSON.parse(storage).length < 1 ? (
+		<>No saved drinks</>
+	) : (
+		<div className="drink-container">
+			<ul className="list-group">
+				{JSON.parse(storage).map((key, index) => (
+					<Drink key={index} item={key} removeDrink={removeDrink} />
+				))}
+			</ul>
+		</div>
+	);
 }

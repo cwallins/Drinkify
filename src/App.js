@@ -1,31 +1,27 @@
-import './App.css';
-import Search from './Search'
-import StoredDrinks from './StoredDrinks';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
-import About from './About'
+import "./App.css";
+import Search from "./Search";
+import StoredDrinks from "./StoredDrinks";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import About from "./About";
 
 function App() {
-  return (
+	return (
+		<Router>
+			<div className="App">
+				<Search />
 
-    <Router>
-      <div className="App">
+				<Switch>
+					<Route exact path="/about">
+						<About />
+					</Route>
 
-        <Search />
-
-        <Switch>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          
-          <Route exact path="/mydrinks">
-            <StoredDrinks />
-          </Route>
-        </Switch>
-
-
-      </div>
-    </Router>
-  );
+					<Route exact path="/mydrinks">
+						<StoredDrinks />
+					</Route>
+				</Switch>
+			</div>
+		</Router>
+	);
 }
 
 export default App;
