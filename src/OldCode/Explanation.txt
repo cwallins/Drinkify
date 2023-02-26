@@ -1,4 +1,4 @@
 In this folder we have stored the larger code files as how they 
-looked prior to us, the project group, started to do the rework. 
+looked prior to when we started to do the rework for this course. 
 In this way it's easy to track how the improved code with the hooks look 
 in comparison to how we made it last year when the project was first created. 

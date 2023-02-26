@@ -4,10 +4,11 @@ import Nav from './Nav';
 
 export default function Search() {
 
-  const inputValue = useRef(""); // Saves the value of the input element
-  const [drinks, setDrinks] = useState([]); // Saves the api-result
+  const inputValue = useRef("");                                  // Saves the value of the input element
+  const [drinks, setDrinks] = useState([]);                       // Saves the api-result
   const [storage, setStorage] = useState([]);
   const [change, setChange] = useState(true);
+  const baseUrl = 'https://thecocktaildb.com/api/json/v1/1/';     // Store url in variable 
 
   const clearDrinksState = () => {
     setDrinks([]);
@@ -17,11 +18,15 @@ export default function Search() {
     clearDrinksState();
   }
 
+  // instead of starting with localstorage.drink in the state we use
+  // useEffect to retrieve the data from localstorage.drink
   useEffect(() => {
     const drinks = JSON.parse(localStorage.getItem('drinks')) || [];
     setStorage(drinks);
   }, []);
 
+  // We can use useCallback to remember the removeDrink
+  // function. This removes re-renders in the background.
   const removeDrink = useCallback((id) => {
     const newDrinksList = storage.filter((drink) => drink.id !== id);
 
@@ -29,35 +34,42 @@ export default function Search() {
     setStorage(newDrinksList);
   }, [storage]);
 
+  // Fetch data from api and throw an error if the data can't be fetched. 
   async function getData(resourceQuery, p) {
-    let res = await fetch(`https://thecocktaildb.com/api/json/v1/1/${resourceQuery}${p}`, { method: 'GET' });
+    try {
+      const url = `${baseUrl}${resourceQuery}${p}`;
+      const response = await fetch(url);
 
-    return await res.json();
-  };
+      if (!response.ok) {
+        throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
+      }
 
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  // Instead of using a for loop to iterate through the strIngredient properties, 
+  // we can use the Object.entries() method to loop through all the properties of the object 
+  // and filter out the ones that are not ingredients.
   async function getDrinksByName(userInput) {
-    let data = await getData('search.php?s=', userInput);
-    let ingredients = [];
+    const data = await getData('search.php?s=', userInput);
+    const drinks = data.drinks.map(drink => {
+      // We can use destructuring to extract the relevant properties 
+      // from the drink object instead of accessing them using bracket notation.
+      const { idDrink, strDrink, strDrinkThumb, strInstructions } = drink;
 
-    let drink = data.drinks.map((drink) => {
-      ingredients = [];
-      // loops through the drink object and adds the indgridient value which is
-      // not null or an empty string to a list.
-      for (let i = 1; i < 16; i++) {
-        if (drink[`strIngredient${i}`] !== "" && drink[`strIngredient${i}`] !== null) {
-          ingredients.push(drink[`strIngredient${i}`]);
-        }
-      }
+      const ingredients = Object.entries(drink)
+        .filter(([key, value]) => key.startsWith('strIngredient') && value)
+        .map(([key, value]) => value);
 
-      return {
-        id: drink.idDrink,
-        name: drink.strDrink,
-        img: drink.strDrinkThumb,
-        instructions: drink.strInstructions,
-        ingredients: ingredients
-      }
+      return { id: idDrink, name: strDrink, img: strDrinkThumb, instructions: strInstructions, ingredients };
     });
-    setDrinks(drink);
+
+    setDrinks(drinks);
   };
 
   function handleClick(e) {
