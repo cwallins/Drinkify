@@ -17,6 +17,18 @@ export default function Search() {
     clearDrinksState();
   }
 
+  useEffect(() => {
+    const drinks = JSON.parse(localStorage.getItem('drinks')) || [];
+    setStorage(drinks);
+  }, []);
+
+  const removeDrink = useCallback((id) => {
+    const newDrinksList = storage.filter((drink) => drink.id !== id);
+
+    localStorage.setItem('drinks', JSON.stringify(newDrinksList));
+    setStorage(newDrinksList);
+  }, [storage]);
+
   async function getData(resourceQuery, p) {
     let res = await fetch(`https://thecocktaildb.com/api/json/v1/1/${resourceQuery}${p}`, { method: 'GET' });
 
@@ -65,18 +77,6 @@ export default function Search() {
     localStorage.setItem("drinks", JSON.stringify(storage));
     setChange(!change);
   }
-
-  useEffect(() => {
-    const drinks = JSON.parse(localStorage.getItem('drinks')) || [];
-    setStorage(drinks);
-  }, []);
-
-  const removeDrink = useCallback((id) => {
-    const newDrinksList = storage.filter((drink) => drink.id !== id);
-
-    localStorage.setItem('drinks', JSON.stringify(newDrinksList));
-    setStorage(newDrinksList);
-  }, [storage]);
 
   return (
     <React.Fragment>
