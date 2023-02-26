@@ -1,3 +1,4 @@
+/*
 import React, { useState } from 'react'
 import Drink from '../Drink';
 
@@ -43,3 +44,4 @@ export default function StoredDrinks() {
         </div>
     )
 }
+*/

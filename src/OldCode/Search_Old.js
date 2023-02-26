@@ -1,3 +1,4 @@
+/*
 import React, { useRef, useState } from 'react'
 import Drink from './Drink';
 import Nav from './Nav';
@@ -116,3 +117,4 @@ export default function Search() {
         </div>
     );
 }
+*/

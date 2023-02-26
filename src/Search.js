@@ -30,7 +30,7 @@ export default function Search() {
     let drink = data.drinks.map((drink) => {
       ingredients = [];
       // loops through the drink object and adds the indgridient value which is
-      // not null or an empty string to a list. 
+      // not null or an empty string to a list.
       for (let i = 1; i < 16; i++) {
         if (drink[`strIngredient${i}`] !== "" && drink[`strIngredient${i}`] !== null) {
           ingredients.push(drink[`strIngredient${i}`]);
