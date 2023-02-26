@@ -3,17 +3,17 @@ import Drink from './Drink';
 
 
 export default function StoredDrinks() {
-  const [storage, setStorage] = useState([]); // tom lista istället 
+  const [storage, setStorage] = useState([]);
 
-  // istället för att starta med localstorage.drink, ta useEffect 
-  // för att hämta datan i localstorage.drink 
+  // instead of starting with localstorage.drink in the state we use
+  // useEffect to retrieve the data from localstorage.drink
   useEffect(() => {
     const drinks = JSON.parse(localStorage.getItem('drinks')) || [];
     setStorage(drinks);
   }, []);
 
-  // useCallback för att minnas removeDrink funktionen
-  // tror detta tar bort re-renders i bakgrunden med 
+  // We can use useCallback to remember the removeDrink
+  // function. This removes re-renders in the background.
   const removeDrink = useCallback((id) => {
     const newDrinksList = storage.filter((drink) => drink.id !== id);
 
@@ -21,9 +21,8 @@ export default function StoredDrinks() {
     setStorage(newDrinksList);
   }, [storage]); // passa in storage i listan
 
-
-  // istället för att parsa storage flera gånger eller kolla om den är 
-  // längre än 1 så kan man köra conditional rendering i returen 
+  // Instead of parsing storage multiple times or checking if it's
+  // longer than one, we can render it conditionally in the return. 
   return (
     <React.Fragment>
       <div className="drink-container">
@@ -33,7 +32,7 @@ export default function StoredDrinks() {
               <Drink key={drink.id} item={drink} removeDrink={removeDrink} />
             ))}
           </ul>
-        ) : ( // om storage är tomt 
+        ) : ( // If storage is empty
           <div>No saved drinks</div>
         )}
       </div>
