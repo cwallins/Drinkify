@@ -1,6 +1,11 @@
 import React from "react";
 
 export default function Drink(props) {
+
+  // Checks if the drink in question is in LocalStorage.
+  // If the drink is in LS a button element is returned with a onClick handler which can remove it from LS,
+  // otherwise a different button element is returned which can add the drink to the Local Storage. 
+  
   function addOrDelBtn(id) {
     let storage = localStorage.drinks;
     let newStorage;
