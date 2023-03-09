@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 // By using useCallback, we memoize the onClick function and avoid creating a new function on every re-render of the Nav component. 
 // This can help to reduce the number of unnecessary re-renders of the Link component and improve the performance of our application.
+
 function Nav({ onChange }) {
   const handleClick = useCallback(() => {
     onChange();
