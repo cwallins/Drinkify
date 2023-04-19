@@ -1,44 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import Drink from './Drink';
 
 
 export default function StoredDrinks() {
+  const [storage, setStorage] = useState([]);
 
-  const [storage, setStorage] = useState(localStorage.drinks)
+  // instead of starting with localstorage.drink in the state we use
+  // useEffect to retrieve the data from localstorage.drink
+  useEffect(() => {
+    const drinks = JSON.parse(localStorage.getItem('drinks')) || [];
+    setStorage(drinks);
+  }, []);
 
-  
-  function loadDrinks() {
-    //hämtar drinkar från localstorage
-    let drinks = localStorage.drinks;
+  // We can use useCallback to remember the removeDrink
+  // function. This removes re-renders in the background.
+  const removeDrink = useCallback((id) => {
+    const newDrinksList = storage.filter((drink) => drink.id !== id);
 
-    let newDrinksList;
+    localStorage.setItem('drinks', JSON.stringify(newDrinksList));
+    setStorage(newDrinksList);
+  }, [storage]); // passa in storage i listan
 
-    //om 'drinks' är undefined sparas newDrinkslist som en tom lista, annars sparas localstorage i newDrinkslist
-    drinks === undefined ? newDrinksList = [] : newDrinksList = JSON.parse(drinks);
-
-    return newDrinksList;
-  }
-
-  function removeDrink(id) {
-
-    let drinks = loadDrinks();
-  
-    let newDrinksList = drinks.filter((drink) => drink.id !== id);
-    
-    localStorage.setItem("drinks", JSON.stringify(newDrinksList));
-    setStorage(JSON.stringify(newDrinksList));
-    
-  }
- 
-  return storage === undefined || JSON.parse(storage).length < 1 ? (
-    <div>
-      No saved drinks
-    </div>
-  ) : (
-    <div className="drink-container">
-      <ul className='list-group'>
-        {JSON.parse(storage).map((key, index) => <Drink key={index} item={key} removeDrink={removeDrink}/>)}
-      </ul>
-    </div>
-  )
+  // Instead of parsing storage multiple times or checking if it's
+  // longer than one, we can render it conditionally in the return. 
+  return (
+    <React.Fragment>
+      <div className="drink-container">
+        {storage.length > 0 ? ( // conditional render 
+          <ul className="list-group">
+            {storage.map((drink) => (
+              <Drink key={drink.id} item={drink} removeDrink={removeDrink} />
+            ))}
+          </ul>
+        ) : ( // If storage is empty
+          <div>No saved drinks</div>
+        )}
+      </div>
+    </React.Fragment>
+  );
 }
+
+
